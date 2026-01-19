@@ -1,0 +1,17 @@
+{
+	"name": "views",
+	"properties": {
+		"content": {
+			"query": "-------------------------\n----------VIEWS-----\n------------------------\n\nCREATE VIEW revenue_view\nAS\nSELECT * FROM \nOPENROWSET(\n      BULK 'revenue',\n      DATA_SOURCE = 'raw_external_source',\n      FORMAT = 'CSV',\n      PARSER_VERSION = '2.0',\n      HEADER_ROW = TRUE\n      ) as openquery1\n\n\nSELECT * FROM revenue_view      ",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "karurserverless",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

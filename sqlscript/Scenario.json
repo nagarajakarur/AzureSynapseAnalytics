@@ -1,0 +1,17 @@
+{
+	"name": "Scenario",
+	"properties": {
+		"content": {
+			"query": "CREATE EXTERNAL TABLE revenue2\n(\n     Dealer_ID  VARCHAR(4000),\n    Model_ID   VARCHAR(4000),\n    Branch_ID  VARCHAR(4000),\n    Date_ID    VARCHAR(4000),\n    Units_Sold VARCHAR(4000),\n    Revenue    VARCHAR(4000)\n)\nWITH\n(\n    LOCATION = 'revenue2',\n    DATA_SOURCE = raw_external_source,\n    FILE_FORMAT = csv_file_format_type2\n)\n\nSELECT * FROM revenue2",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "karurserverless",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

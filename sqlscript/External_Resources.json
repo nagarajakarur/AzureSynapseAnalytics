@@ -1,0 +1,17 @@
+{
+	"name": "External_Resources",
+	"properties": {
+		"content": {
+			"query": "-----------------------------\n-----CREATE CREDENTIAL FOR DPOOL------\n------------------------------\n\nCREATE DATABASE SCOPED CREDENTIAL karurcreds_dedicatedpool\nWITH IDENTITY = 'Managed Identity'\n\n----------------------------------\n--- CREATE EXTERNAL DATA SOURCE FOR DPOOL---\n-----------------------------------\n\nCREATE EXTERNAL DATA SOURCE raw_external_source_dp_abfss1\nWITH\n(\n    LOCATION = 'abfss://bronze@azuresynpasedatalake.dfs.core.windows.net',\n    CREDENTIAL = karurcreds_dedicatedpool\n)\n\n--------------------------------------------------------\n---CREATE EXTERNAL TABLE FOR DPOOL--------------------------------------\n-------------------------------------------------------\nCREATE EXTERNAL TABLE parquet_table_dpool\n(\n     Dealer_ID  VARCHAR(4000),\n    Model_ID   VARCHAR(4000),\n    Branch_ID  VARCHAR(4000),\n    Date_ID    VARCHAR(4000),\n    Units_Sold BIGINT,\n    Revenue    BIGINT\n)\nWITH\n(\n   LOCATION ='/bronze/cetas_revenue',\n   DATA_SOURCE = raw_external_source_dp_abfss,\n   FILE_FORMAT = parquet_format_dpool\n)",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "karurdedicatedpool",
+				"poolName": "karurdedicatedpool"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
